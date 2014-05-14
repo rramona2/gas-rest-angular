@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <title>GAS-REST-Angular - GAS-REST Service Example App</title>
+  <script src="https://code.angularjs.org/1.2.16/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.2.16/angular-resource.min.js"></script>  
+  <script src="js/app.js"></script>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="css/style.css">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->  
+</head>
+<body ng-controller="CatsCtrl">
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <div class="cover-container">
+        <div class="masthead clearfix">
+          <div class="inner">
+            <h3 class="masthead-brand">GAS-REST Example App</h3>
+            <ul class="nav masthead-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="https://github.com/dab00/gas-rest-angular" target="_blank">GitHub</a></li>
+              <li><a href="https://docs.google.com/spreadsheets/d/1rDit6RtL6ohww86sHsE8d66DjncQmKe25dqU9jz0F90/edit" target="_blank">Datasource</a></li>
+            </ul>
+          </div>
+        </div>        
+          <ul>
+            <li class="list-unstyled"><a href="https://angularjs.org/" target="_blank">AngularJS</a> on frontend</li>
+            <li class="list-unstyled"><a href="https://developers.google.com/apps-script/" target="_blank">Google Apps Script</a> on backend</li>
+            <li class="list-unstyled"><a href="http://rest.daspot.ru/" target="_blank">GAS-REST</a> service in the middle</li>
+          </ul>          
+          <table class="table">
+            <thead>        
+              <tr>
+                <td>#</td>
+                <td><input class="form-control" type="text" placeholder="Name" ng-model="new.name"/></td>
+                <td><input class="form-control" type="number" max=30 min=0 placeholder="Age" ng-model="new.age"/></td>
+                <td><button class="btn btn-default" title="Press to create new" ng-click="create()">✔</button></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr title="Double click to edit" ng-repeat="cat in cats | orderBy:'id'" ng-dblclick="edit()" edit-item="cat">
+                <td>{{cat.id}}</td>
+                <td>
+                  <input class="form-control" type="text" placeholder="Name" ng-model="cat.name" ng-if="isEditing"/>
+                  <span ng-if="!isEditing">{{cat.name}}</span>
+                </td>
+                <td>
+                  <input class="form-control" type="number" max=30 min=0 placeholder="Age" ng-model="cat.age" ng-if="isEditing"/>
+                  <span ng-if="!isEditing">{{cat.age}}</span>
+                </td>  
+                
+                <td>
+                  <button class="btn btn-default" title="Press to update" ng-if="isEditing" ng-click="update(cat)">✔</button>
+                  <button class="btn btn-default" title="Press to remove" ng-if="!isEditing" ng-click="remove(cat)">✖</button>
+                </td>
+              </tr>               
+            </tbody>
+          </table>
+        <div class="mastfoot">
+          <div class="inner">
+            <p>© <a href="http://www.daspot.ru">Anatoly Demidovich</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
