@@ -1,7 +1,7 @@
 angular.module('app', ["ngResource"])  
   .controller('CatsCtrl', function($scope, $http, $resource) {
     $scope.catsResource = $resource(
-      'http://rest.daspot.ru/api/AKfycbwEw9l-DeT3Qfv5CmRm60k0RALu2iVIyvyAuaWZbHp2we7xi1E/cats/:id', 
+      'http://rest.daspot.ru/api/AKfycbyFtzb8CwTvErZ_h0b0TJhObbckPhlApiaf1JKjH3EEzhCdSX4/cats/:id', 
       { id:'@id' }, 
       { // because a response data are in the object named cat
         query: {
